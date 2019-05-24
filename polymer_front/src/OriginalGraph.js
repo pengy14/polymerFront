@@ -1,0 +1,381 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Input from '@material-ui/core/Input';
+import InputBase from '@material-ui/core/InputBase';
+import InputLabel from '@material-ui/core/InputLabel';
+import TextField from '@material-ui/core/TextField';
+import FormControl from '@material-ui/core/FormControl';
+import purple from '@material-ui/core/colors/purple';
+import green from '@material-ui/core/colors/green';
+import * as echarts from "echarts";
+
+const styles = theme => ({
+    button: {
+        margin: theme.spacing.unit,
+    },
+    input: {
+        display: 'none',
+    },root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+    margin: {
+        margin: theme.spacing.unit,
+    },
+    cssLabel: {
+        '&$cssFocused': {
+            color: purple[500],
+        },
+    },
+    cssFocused: {},
+    cssUnderline: {
+        '&:after': {
+            borderBottomColor: purple[500],
+        },
+    },
+    cssOutlinedInput: {
+        '&$cssFocused $notchedOutline': {
+            borderColor: purple[500],
+        },
+    },
+    notchedOutline: {},
+    bootstrapRoot: {
+        'label + &': {
+            marginTop: theme.spacing.unit * 3,
+        },
+    },
+    bootstrapInput: {
+        borderRadius: 4,
+        position: 'relative',
+        backgroundColor: theme.palette.common.white,
+        border: '1px solid #ced4da',
+        fontSize: 16,
+        width: 'auto',
+        padding: '10px 12px',
+        transition: theme.transitions.create(['border-color', 'box-shadow']),
+        // Use the system font instead of the default Roboto font.
+        fontFamily: [
+            '-apple-system',
+            'BlinkMacSystemFont',
+            '"Segoe UI"',
+            'Roboto',
+            '"Helvetica Neue"',
+            'Arial',
+            'sans-serif',
+            '"Apple Color Emoji"',
+            '"Segoe UI Emoji"',
+            '"Segoe UI Symbol"',
+        ].join(','),
+        '&:focus': {
+            borderRadius: 4,
+            borderColor: '#80bdff',
+            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+        },
+    },
+    bootstrapFormLabel: {
+        fontSize: 18,
+    },
+});
+
+class OriginalGraph extends React.Component{
+    constructor(props){
+        super(props);
+        this.state={};
+    }
+
+    componentDidMount() {
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('charts'));
+        var myChart2 = echarts.init(document.getElementById('charts2'));
+        // 绘制图表
+        const option = {
+            title: {
+                text: 'node 1'
+            },
+            tooltip: {},
+            animationDurationUpdate: 1500,
+            animationEasingUpdate: 'quinticInOut',
+            series: [
+                {
+                    type: 'graph',
+                    layout: 'none',
+                    symbolSize: 50,
+                    roam: true,
+                    label: {
+                        normal: {
+                            show: true
+                        }
+                    },
+                    edgeSymbol: ['circle', 'arrow'],
+                    edgeSymbolSize: [4, 10],
+                    edgeLabel: {
+                        normal: {
+                            textStyle: {
+                                fontSize: 20
+                            }
+                        }
+                    },
+                    data: [{
+                        name: '节点1',
+                        x: 550,
+                        y: 100,
+                        itemStyle: {
+                            normal: {
+                                color: '#399'
+                            }
+                        }
+                    }, {
+                        name: '节点2',
+                        x: 800,
+                        y: 250,
+                        itemStyle: {
+                            normal: {
+                                color: '#399'
+                            }
+                        }
+                    }, {
+                        name: '节点3',
+                        x: 750,
+                        y: 500,
+                        itemStyle: {
+                            normal: {
+                                color: '#399'
+                            }
+                        }
+                    }, {
+                        name: '节点4',
+                        x: 550,
+                        y: 600,
+                        itemStyle: {
+                            normal: {
+                                borderType: "dashed"
+                            }
+                        },
+                    }, {
+                        name: '节点5',
+                        x: 250,
+                        y: 418,
+                        itemStyle: {
+                            normal: {
+                                borderType: "dashed"
+                            }
+                        }
+                    }, {
+                        name: '节点6',
+                        x: 250,
+                        y: 250,
+                        itemStyle: {
+                            normal: {
+                                borderType: "dashed"
+                            }
+                        }
+                    }],
+                    // links: [],
+                    links: [{
+                        source: "节点1",
+                        target: "节点2",
+                    }, {
+                        source: '节点1',
+                        target: '节点3',
+                    }, {
+                        source: '节点2',
+                        target: '节点3'
+                    },
+                        {
+                            source: '节点3',
+                            target: '节点2'
+                        },
+                        {
+                            source: '节点4',
+                            target: '节点1',
+                            lineStyle: {
+                                normal: {
+                                    type: "dashed"
+
+                                }
+                            }
+                        }, {
+                            source: '节点4',
+                            target: '节点3',
+
+                            lineStyle: {
+                                normal: {
+                                    type: "dashed"
+
+                                }
+                            }
+                        }, {
+                            source: '节点5',
+                            target: '节点1',
+
+                            lineStyle: {
+                                normal: {
+                                    type: "dashed"
+
+                                }
+                            }
+                        }, {
+                            source: '节点5',
+                            target: '节点2',
+                            lineStyle: {
+                                normal: {
+                                    type: "dashed"
+
+                                }
+                            }
+                        }, {
+                            source: '节点5',
+                            target: '节点3',
+                            lineStyle: {
+                                normal: {
+                                    type: "dashed"
+
+                                }
+                            }
+                        }, {
+                            source: '节点6',
+                            target: '节点2',
+                            lineStyle: {
+                                normal: {
+                                    type: "dashed"
+
+                                }
+                            }
+                        }],
+                    lineStyle: {
+                        normal: {
+                            opacity: 0.9,
+                            width: 2,
+                            curveness: 0
+                        }
+                    }
+                }
+            ]
+        };
+        const option2 = {
+            title: {
+                text: 'node 2'
+            },
+            tooltip: {},
+            animationDurationUpdate: 1500,
+            animationEasingUpdate: 'quinticInOut',
+            series: [
+                {
+                    type: 'graph',
+                    layout: 'none',
+                    symbolSize: 50,
+                    roam: true,
+                    label: {
+                        normal: {
+                            show: true
+                        }
+                    },
+                    edgeSymbol: ['circle', 'arrow'],
+                    edgeSymbolSize: [4, 10],
+                    edgeLabel: {
+                        normal: {
+                            textStyle: {
+                                fontSize: 20
+                            }
+                        }
+                    },
+                    data: [{
+                        name: '节点1',
+                        x: 550,
+                        y: 100,
+                    }, {
+                        name: '节点2',
+                        x: 800,
+                        y: 250,
+                    }, {
+                        name: '节点3',
+                        x: 750,
+                        y: 500,
+                    }, {
+                        name: '节点4',
+                        x: 550,
+                        y: 600,
+                        itemStyle: {
+                            normal: {
+                                color: '#399'
+                            }
+                        }
+                    }, {
+                        name: '节点5',
+                        x: 250,
+                        y: 418,
+                        itemStyle: {
+                            normal: {
+                                color: '#399'
+                            }
+                        }
+                    }, {
+                        name: '节点6',
+                        x: 250,
+                        y: 250,
+                        itemStyle: {
+                            normal: {
+                                color: '#399'
+                            }
+                        }
+                    }],
+                    // links: [],
+                    links: [{
+                        source: '节点2',
+                        target: '节点5',
+                        lineStyle: {
+                            normal: {
+                                type: "dashed"
+                            }
+                        }
+                    },  {
+                        source: '节点3',
+                        target: '节点5',
+                        lineStyle: {
+                            normal: {
+                                type: "dashed"
+                            }
+                        }
+                    }, {
+                        source: '节点3',
+                        target: '节点6',
+                        lineStyle: {
+                            normal: {
+                                type: "dashed"
+                            }
+                        }
+                    },  {
+                        source: '节点4',
+                        target: '节点5',
+                    },  {
+                        source: '节点5',
+                        target: '节点6',
+                    }, ],
+                    lineStyle: {
+                        normal: {
+                            opacity: 0.9,
+                            width: 2,
+                            curveness: 0
+                        }
+                    }
+                }
+            ]
+        };
+        myChart.setOption(option);
+        myChart2.setOption(option2);
+    }
+
+    render(){
+        return (
+            <div>
+                <div id="charts" style={{width:700,height:600,float:"left"}}></div>
+                <div id="charts2" style={{width:650,height:600,float:"right"}}></div>
+            </div>
+        );
+    }
+}
+
+
+export default withStyles(styles)(OriginalGraph);
