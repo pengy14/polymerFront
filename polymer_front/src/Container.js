@@ -13,6 +13,9 @@ import Graph from 'graph-data-structure';
 import * as echarts from 'echarts';
 import Polymerpush from "./Polymerpush";
 import OriginalGraph from "./OriginalGraph";
+import Polymerpull from "./Polymerpull";
+import Ligrapush from "./Ligrapush";
+import Ligrapull from "./Ligrapull";
 
 function TabContainer(props) {
     return (
@@ -118,14 +121,14 @@ class Container extends React.Component {
                 {value === 1 &&
                 <TabContainer><Polymerpush/></TabContainer>}
                 {value === 2 &&
-                <TabContainer><Mediate changeEpsilon={this.changeEpsilon} changeMaxItr={this.changeMaxItr}
-                                       startMode={this.startMode} clearOutput={this.clearOutput}/></TabContainer>}
+                <TabContainer><Ligrapush/></TabContainer>}
                 {value === 3 &&
-                <TabContainer><Mediate changeEpsilon={this.changeEpsilon} changeMaxItr={this.changeMaxItr}
-                                       startMode={this.startMode} clearOutput={this.clearOutput}/></TabContainer>}
+                <TabContainer><Polymerpull/></TabContainer>}
                 {value === 4 &&
-                <TabContainer><Mediate changeEpsilon={this.changeEpsilon} changeMaxItr={this.changeMaxItr}
-                                       startMode={this.startMode} clearOutput={this.clearOutput}/></TabContainer>}
+                <TabContainer><Ligrapull/></TabContainer>}
+                {/*{value === 4 &&*/}
+                {/*<TabContainer><Mediate changeEpsilon={this.changeEpsilon} changeMaxItr={this.changeMaxItr}*/}
+                                       {/*startMode={this.startMode} clearOutput={this.clearOutput}/></TabContainer>}*/}
                 {/*{console.log(this.constrGraph())}*/}
                 {/*<svg>*/}
                 {/*<circle cx={50} cy={50} r={10} fill="red"/>*/}

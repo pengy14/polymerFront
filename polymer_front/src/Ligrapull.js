@@ -81,7 +81,7 @@ const styles = theme => ({
     },
 });
 
-class Polymerpush extends React.Component{
+class Ligrapull extends React.Component{
     constructor(props){
         super(props);
         this.state={
@@ -93,12 +93,10 @@ class Polymerpush extends React.Component{
             node2v2Color:"",
             node2v3Color:"",
             count: 0,
-            node1V1OutEdge:"",
-            node2V1OutEdge:"",
-            node1V3OutEdge:"",
-            node2V3OutEdge:"",
-            // dcurr:['1/6','1/6','1/6','1/6','1/6','1/6'],
-            // dnext:[0,0,0,0,0,0]
+            node1V1InEdge:"",
+            node2V1InEdge:"",
+            node1V3InEdge:"",
+            node2V3InEdge:"",
         };
         autoBind(this);
     }
@@ -191,28 +189,24 @@ class Polymerpush extends React.Component{
                     }],
                     // links: [],
                     links: [{
-                        source: "节点1",
-                        target: "节点2",
+                        source: "节点4",
+                        target: "节点1",
                         lineStyle: {
                             normal: {
-                                color: this.state.node1V1OutEdge===""?"grey":this.state.node1V1OutEdge,
-                                opacity: 0.9,
-                                width: 2,
+                                color: this.state.node1V1InEdge===""?"grey":this.state.node1V1InEdge
+                            }
+                        }
+                    }, {
+                        source: '节点5',
+                        target: '节点1',
+                        lineStyle: {
+                            normal: {
+                                color: this.state.node1V1InEdge===""?"grey":this.state.node1V1InEdge
                             }
                         }
                     }, {
                         source: '节点1',
-                        target: '节点3',
-                        lineStyle: {
-                            normal: {
-                                color: this.state.node1V1OutEdge===""?"grey":this.state.node1V1OutEdge,
-                                opacity: 0.9,
-                                width: 2,
-                            }
-                        }
-                    }, {
-                        source: '节点2',
-                        target: '节点3'
+                        target: '节点2'
                     },
                         {
                             source: '节点3',
@@ -224,59 +218,60 @@ class Polymerpush extends React.Component{
                             }
                         },
                         {
-                            source: '节点4',
-                            target: '节点1',
-                            lineStyle: {
-                                normal: {
-                                    type: "dashed"
-
-                                }
-                            }
-                        }, {
-                            source: '节点4',
-                            target: '节点3',
-
-                            lineStyle: {
-                                normal: {
-                                    type: "dashed"
-
-                                }
-                            }
-                        }, {
-                            source: '节点5',
-                            target: '节点1',
-
-                            lineStyle: {
-                                normal: {
-                                    type: "dashed"
-
-                                }
-                            }
-                        }, {
                             source: '节点5',
                             target: '节点2',
                             lineStyle: {
                                 normal: {
-                                    type: "dashed"
-
-                                }
-                            }
-                        }, {
-                            source: '节点5',
-                            target: '节点3',
-                            lineStyle: {
-                                normal: {
-                                    type: "dashed"
+                                    // type: "dashed"
 
                                 }
                             }
                         }, {
                             source: '节点6',
                             target: '节点2',
+
                             lineStyle: {
                                 normal: {
-                                    type: "dashed"
+                                    // type: "dashed"
 
+                                }
+                            }
+                        }, {
+                            source: '节点1',
+                            target: '节点3',
+
+                            lineStyle: {
+                                normal: {
+                                    // type: "dashed"
+                                    color: this.state.node1V3InEdge
+                                }
+                            }
+                        }, {
+                            source: '节点2',
+                            target: '节点3',
+                            lineStyle: {
+                                normal: {
+                                    // type: "dashed"
+                                    color: this.state.node1V3InEdge
+
+                                }
+                            }
+                        }, {
+                            source: '节点4',
+                            target: '节点3',
+                            lineStyle: {
+                                normal: {
+                                    // type: "dashed"
+                                    color: this.state.node1V3InEdge
+                                }
+                            }
+                        }, {
+                            source: '节点5',
+                            target: '节点3',
+                            lineStyle: {
+                                normal: {
+                                    // type: "dashed"
+                                    color: this.state.node1V3InEdge
                                 }
                             }
                         }],
@@ -321,11 +316,6 @@ class Polymerpush extends React.Component{
                         name: '节点1',
                         x: 550,
                         y: 100,
-                        itemStyle: {
-                            normal: {
-                                color: this.state.node2v1Color
-                            }
-                        }
                     }, {
                         name: '节点2',
                         x: 800,
@@ -336,7 +326,7 @@ class Polymerpush extends React.Component{
                         y: 500,
                         itemStyle: {
                             normal: {
-                                color: this.state.node2v3Color
+                                // color: this.state.node2v3Color
                             }
                         }
                     }, {
@@ -373,7 +363,7 @@ class Polymerpush extends React.Component{
                         target: '节点5',
                         lineStyle: {
                             normal: {
-                                type: "dashed"
+                                // type: "dashed"
                             }
                         }
                     },  {
@@ -381,22 +371,22 @@ class Polymerpush extends React.Component{
                         target: '节点5',
                         lineStyle: {
                             normal: {
-                                type: "dashed",
-                                color: this.state.node1V3OutEdge
+                                // type: "dashed",
+                                // color: this.state.node1V3OutEdge
                             }
                         }
                     }, {
-                        source: '节点3',
-                        target: '节点6',
+                        source: '节点4',
+                        target: '节点5',
                         lineStyle: {
                             normal: {
-                                type: "dashed",
-                                color: this.state.node1V3OutEdge
+                                // type: "dashed",
+                                // color: this.state.node1V3OutEdge
                             }
                         }
                     },  {
-                        source: '节点4',
-                        target: '节点5',
+                        source: '节点3',
+                        target: '节点6',
                     },  {
                         source: '节点5',
                         target: '节点6',
@@ -414,27 +404,6 @@ class Polymerpush extends React.Component{
         myChart.setOption(option);
         myChart2.setOption(option2);
     }
-    ITR = event => {
-        // if (this.state.count>3) {
-        //     clearTimeout(this.timer);
-        //     this.setState({count:0});
-        // }
-
-        if (this.state.count===1) {
-            this.setState({node1v1Color:"#D10CFF",node1V1OutEdge:"#D10CFF",node2V1OutEdge:"#D10CFF",node2v1Color:"#D10CFF",});
-            // dcurr:['1/6','1/6','1/6','1/6','1/6','1/6'], dnext:[0,'1/12','1/12',0,0,0]});
-        }
-        if(this.state.count===2){
-            console.log(this.state.count);
-            this.setState({node1v3Color:"#80bdff",node1V3OutEdge:"#80bdff",node2V3OutEdge:"#80bdff",node2v3Color:"#80bdff",node1v1Color:"",node1V1OutEdge:"",node2v1Color:"#c23531"});
-            // node2V1OutEdge:"",node2v1Color:"#c23531",dcurr:['1/6','1/6','1/6','1/6','1/6','1/6'], dnext:[0,'5/36','1/12',0,'1/18','1/18']});
-        }
-        if (this.state.count===3) {
-            this.setState({node1v3Color:"",node1V3OutEdge:"",node2V3OutEdge:"",node2v3Color:""})
-        }
-
-        this.setState({count:++this.state.count});
-    };
 
     componentDidMount() {
         // 基于准备好的dom，初始化echarts实例
@@ -443,13 +412,21 @@ class Polymerpush extends React.Component{
 
     componentDidUpdate(){
         this.initECharts();
-        // this.timer=setTimeout(this.ITR(),1500);
     }
 
-
-
-
-
+     ITR = event => {
+         if (this.state.count===1) {
+             this.setState({node1v1Color:"#D10CFF",node1V1InEdge:"#D10CFF"});
+         }
+         if(this.state.count===2){
+             console.log(this.state.count);
+             this.setState({node1V3InEdge:"#80bdff",node1v3Color:"#80bdff",node1V1InEdge:"",node1v1Color:"#c23531",});
+         }
+         if (this.state.count===3) {
+             this.setState({node1v3Color:"",node1V3InEdge:"",node2V3InEdge:"",node2v3Color:""})
+         }
+         this.setState({count:++this.state.count});
+     };
 
     render(){
         const { classes } = this.props;
@@ -460,24 +437,14 @@ class Polymerpush extends React.Component{
                     <Button variant="contained" color="secondary" className={classes.button} onClick={this.ITR}>
                         Itr
                     </Button>
-                    {/*<span>当前rank值:&nbsp;</span>*/}
-                    {/*{this.state.dcurr.map(item => {*/}
-                        {/*return <span>{item}&nbsp;</span>;*/}
-                    {/*})}*/}
-                    {/*<br/>*/}
-                    {/*<span>下轮rank值:&nbsp;</span>*/}
-                    {/*{this.state.dnext.map(item => {*/}
-                        {/*return <span>{item}&nbsp;</span>;*/}
-                    {/*})}*/}
                 </div>
                 <hr/>
                 <div id="charts" style={{width:700,height:600,float:"left"}}></div>
                 <div id="charts2" style={{width:650,height:600,float:"right"}}></div>
-
             </div>
         );
     }
 }
 
 
-export default withStyles(styles)(Polymerpush);
+export default withStyles(styles)(Ligrapull);
